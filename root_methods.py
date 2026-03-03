@@ -38,3 +38,46 @@ if __name__ == "__main__":
         print(f"Akar ditemukan: {root}")
     else:
         print("Tidak ditemukan akar pada interval ini.")
+# Metode Newton-Raphson
+def newton(x0, tol=1e-6, max_iter=100):
+    x = x0
+    for i in range(max_iter):
+        fx = f(x)
+        dfx = df(x)
+        if dfx == 0:
+            print("Turunan nol, tidak bisa lanjut")
+            return None
+        x_new = x - fx / dfx
+        print(f"Newton Iter {i+1}: x = {x_new}, f(x) = {f(x_new)}")
+        if abs(f(x_new)) < tol:
+            return x_new
+        x = x_new
+    return x
+
+# Metode Secant
+def secant(x0, x1, tol=1e-6, max_iter=100):
+    for i in range(max_iter):
+        f0, f1 = f(x0), f(x1)
+        if f1 - f0 == 0:
+            print("Denominator nol, tidak bisa lanjut")
+            return None
+        x2 = x1 - f1 * (x1 - x0) / (f1 - f0)
+        print(f"Secant Iter {i+1}: x = {x2}, f(x) = {f(x2)}")
+        if abs(f(x2)) < tol:
+            return x2
+        x0, x1 = x1, x2
+    return x2
+
+# Bagian main untuk eksekusi langsung
+if __name__ == "__main__":
+    print("=== Metode Bisection ===")
+    root_bis = bisection(0, 2)
+    print(f"Akar Bisection: {root_bis}\n")
+
+    print("=== Metode Newton-Raphson ===")
+    root_newton = newton(1.0)  # tebakan awal
+    print(f"Akar Newton-Raphson: {root_newton}\n")
+
+    print("=== Metode Secant ===")
+    root_secant = secant(0, 2)  # dua tebakan awal
+    print(f"Akar Secant: {root_secant}")
