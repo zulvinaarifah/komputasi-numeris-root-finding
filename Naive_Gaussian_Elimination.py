@@ -1,12 +1,14 @@
-# Naive_Gaussian_Elimination
+# %% [markdown]
+# # Naive Gaussian Elimination
 # Forward Elimination + Backward Substitution
-# =========================================================
+# 
 # Metode untuk menyelesaikan sistem persamaan linear AX = B
+# 
 # Tahapan:
-# 1. Forward Elimination -> membentuk matriks segitiga atas
-# 2. Backward Substitution -> menghitung solusi variabel
-# =========================================================
+# 1. Forward Elimination → membentuk matriks segitiga atas
+# 2. Backward Substitution → menghitung solusi variabel
 
+# %%
 def print_system(A, b):
     """Menampilkan sistem persamaan dalam bentuk matriks"""
     n = len(A)
@@ -14,7 +16,10 @@ def print_system(A, b):
         print(A[i], "|", b[i])
     print()
 
+# %% [markdown]
+# ## Forward Elimination
 
+# %%
 def forward_elimination(A, b):
     """
     Tahap Forward Elimination
@@ -45,7 +50,10 @@ def forward_elimination(A, b):
         print("Matriks setelah eliminasi:")
         print_system(A, b)
 
+# %% [markdown]
+# ## Backward Substitution
 
+# %%
 def backward_substitution(A, b):
     """
     Tahap Backward Substitution
@@ -72,11 +80,10 @@ def backward_substitution(A, b):
 
     return x
 
+# %% [markdown]
+# ## Contoh Kasus
 
-# =========================================================
-# PROGRAM UTAMA
-# =========================================================
-
+# %%
 # contoh sistem persamaan linear
 # 2x1 - x2 + x3 = 2
 # 3x1 + 3x2 + 9x3 = -1
@@ -93,9 +100,11 @@ b = [2, -1, 4]
 print("Sistem Persamaan Awal:")
 print_system(A, b)
 
+# %%
 # tahap eliminasi
 forward_elimination(A, b)
 
+# %%
 # tahap mencari solusi
 print("Backward Substitution:")
 solution = backward_substitution(A, b)
